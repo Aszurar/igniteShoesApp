@@ -1,27 +1,33 @@
-import { StatusBar } from 'react-native';
-import OneSignal from 'react-native-onesignal';
-import { NativeBaseProvider } from 'native-base';
-import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import 'react-native-gesture-handler';
+import { useEffect } from 'react';
 
-import { Routes } from './src/routes';
+import { NativeBaseProvider } from 'native-base';
+
+import OneSignal from 'react-native-onesignal';
+import { StatusBar } from 'react-native';
+
+import {
+  Roboto_400Regular,
+  Roboto_700Bold,
+  useFonts,
+} from '@expo-google-fonts/roboto';
 
 import { THEME } from './src/theme';
+import { Routes } from './src/routes';
+import { CartContextProvider } from './src/contexts/CartContext';
 import { Loading } from './src/components/Loading';
 
-import { CartContextProvider } from './src/contexts/CartContext';
-import { useEffect } from 'react';
 const { ONE_SIGNAL_ID } = process.env;
 
-console.log("ONE_SIGNAL_ID", ONE_SIGNAL_ID)
+console.log('ONE_SIGNAL_ID', ONE_SIGNAL_ID);
 
 OneSignal.setAppId(ONE_SIGNAL_ID!);
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
-
   useEffect(() => {
-    const unsubscribe = OneSignal.setNotificationOpenedHandler((response) => {
+    const unsubscribe = OneSignal.setNotificationOpenedHandler(response => {
       console.log(response);
       const { actionId } = response.action as any;
       switch (actionId) {
@@ -35,7 +41,6 @@ export default function App() {
     });
 
     return unsubscribe;
-
   }, []);
 
   return (
@@ -48,7 +53,6 @@ export default function App() {
       <CartContextProvider>
         {fontsLoaded ? <Routes /> : <Loading />}
       </CartContextProvider>
-
     </NativeBaseProvider>
   );
 }
