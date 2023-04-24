@@ -1,25 +1,33 @@
-import { HStack, Text, IconButton, CloseIcon, Icon, Pressable } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+
+import {
+  CloseIcon,
+  HStack,
+  Icon,
+  IconButton,
+  Pressable,
+  Text,
+} from 'native-base';
+
 import { OSNotification } from 'react-native-onesignal';
+// import * as ExpoLinking from 'expo-linking';
+
+import { Ionicons } from '@expo/vector-icons';
+
+import handleLinkNavigation from '../utils/handleLinkNavigation';
 
 type Props = {
   data: OSNotification;
   onClose: () => void;
-}
-
-type NotificationData = {
-  route: "details";
-  productId: string;
-}
+};
 
 export function Notification({ data, onClose }: Props) {
-  const { navigate } = useNavigation();
-  const { route, productId } = data.additionalData as NotificationData;
-  console.log(data)
+  const { launchURL } = data;
+  console.log(data);
   function handleNavigateToDetailsProduct() {
-    if (route === "details" && productId) {
-      navigate(route, { productId });
+    if (launchURL) {
+      handleLinkNavigation(launchURL);
+      // ExpoLinking.openURL(launchURL);
       onClose();
     }
   }
@@ -32,13 +40,15 @@ export function Notification({ data, onClose }: Props) {
       bgColor="gray.200"
       position="absolute"
       top={0}
-      onPress={handleNavigateToDetailsProduct}
-    >
-      <HStack
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Icon as={Ionicons} name="notifications-outline" size={5} color="black" mr={2} />
+      onPress={handleNavigateToDetailsProduct}>
+      <HStack justifyContent="space-between" alignItems="center">
+        <Icon
+          as={Ionicons}
+          name="notifications-outline"
+          size={5}
+          color="black"
+          mr={2}
+        />
 
         <Text fontSize="md" color="black" flex={1}>
           {data.title}
@@ -48,7 +58,7 @@ export function Notification({ data, onClose }: Props) {
           variant="unstyled"
           _focus={{ borderWidth: 0 }}
           icon={<CloseIcon size="3" />}
-          _icon={{ color: "coolGray.600" }}
+          _icon={{ color: 'coolGray.600' }}
           color="black"
           onPress={onClose}
         />
