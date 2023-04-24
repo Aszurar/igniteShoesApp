@@ -6,7 +6,6 @@ import OneSignal, { OSNotification } from 'react-native-onesignal';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 
 import { Notification } from '../components/Notification';
-import { TabRoutes } from './tab.routes';
 import { AppRoutes } from './app.routes';
 
 const linking = {
