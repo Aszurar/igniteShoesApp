@@ -1,19 +1,11 @@
-import OneSignal from "react-native-onesignal";
+import OneSignal from 'react-native-onesignal';
 
-export function tagUserEmailCreate(email: string){
-    // OneSignal.sendTag("user_email:", email);
-    OneSignal.deleteTag("user_email:");
-
+export function deleteTagUserEmail() {
+  OneSignal.deleteTag('user_email:');
+  OneSignal.deleteTag('user_name:');
+  OneSignal.deleteTags(['user_name:', 'user_email:']);
 }
 
-type TagUserInfoCreateProps = {
-    name: string;
-    email: string;
-}
-
-export function tagUserInfoCreate({name, email}: TagUserInfoCreateProps){
-    OneSignal.sendTags({
-        "user_name": name,
-        "user_email": email
-    });
+export function tagCartUpdate(itemsCount: string) {
+  OneSignal.sendTag('cart_items_count', itemsCount);
 }
