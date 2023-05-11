@@ -30,13 +30,21 @@ module.exports = {
                 position: 'before',
               },
               {
-                pattern: 'native-base',
+                pattern:
+                  '{react-native,expo*,expo,@expo/**,expo-*,@expo-*,@expo-**,@expo-google-fonts/**,@expo/*,expo/*}',
                 group: 'external',
                 position: 'before',
               },
               {
                 pattern:
-                  '{react*,react-*,@react*,@react-*,@react*/**,@react-*/**,expo*,styled-components/**,}',
+                  '{native-base,styled-components,styled-components/native,styled-components/primitives,styled-components/**}',
+                group: 'external',
+                position: 'before',
+              },
+
+              {
+                pattern:
+                  '{react*,react-*,@react*,@react-*,@react*/**,@react-*/**,styled-components/**,}',
                 group: 'external',
                 position: 'before',
               },
@@ -46,7 +54,8 @@ module.exports = {
                 position: 'before',
               },
               {
-                pattern: '{@icons/**,@images/**}',
+                pattern:
+                  '{@icons/**,@images/**,assets/**,../assets/**,../../assets/**}',
                 group: 'internal',
                 position: 'before',
               },
@@ -57,22 +66,26 @@ module.exports = {
                 position: 'before',
               },
               {
-                pattern: '{@atoms/**,@molecules/**,@organisms/**}',
+                pattern:
+                  '{@atoms/**,@molecules/**,@organisms/**,components/**,../components/**,../../components/**}',
                 group: 'internal',
                 position: 'before',
               },
               {
-                pattern: '{@styles/**,@utils/**}',
+                pattern:
+                  '{@styles/**,@utils/**,utils/**,../utils/**,../../utils/**}',
                 group: 'internal',
                 position: 'before',
               },
               {
-                pattern: '{@dtos/**,@translations/**,@dto/**}',
+                pattern:
+                  '{@dtos/**,@translations/**,@dto/**,dto/**,../dto/**,../../dto/**}',
                 group: 'internal',
                 position: 'before',
               },
               {
-                pattern: './styles',
+                pattern:
+                  '{./styles,@theme/**,theme/**,../theme/**,../../theme/**}',
                 group: 'internal',
                 position: 'before',
               },
