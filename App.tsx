@@ -1,16 +1,16 @@
 import 'react-native-gesture-handler';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-import { NativeBaseProvider } from 'native-base';
-
-import OneSignal from 'react-native-onesignal';
 import { StatusBar } from 'react-native';
-
 import {
   Roboto_400Regular,
   Roboto_700Bold,
   useFonts,
 } from '@expo-google-fonts/roboto';
+
+import { NativeBaseProvider } from 'native-base';
+
+import OneSignal from 'react-native-onesignal';
 
 import { THEME } from './src/theme';
 import { Routes } from './src/routes';
@@ -21,7 +21,7 @@ const { ONE_SIGNAL_ID } = process.env;
 
 console.log('ONE_SIGNAL_ID', ONE_SIGNAL_ID);
 
-OneSignal.setAppId(ONE_SIGNAL_ID!);
+OneSignal.setAppId(ONE_SIGNAL_ID);
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
