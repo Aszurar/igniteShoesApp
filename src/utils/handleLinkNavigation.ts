@@ -13,6 +13,7 @@ async function handleLinkNavigation(url: string) {
     await ExpoLinking.openURL(url);
   } catch (err) {
     Alert.alert('Error', 'Falha ao abrir link');
+    console.log(err);
   }
 }
 
