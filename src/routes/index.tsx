@@ -13,6 +13,7 @@ const linking = {
     'com.aszura.igniteshoesapp://',
     'igniteShoesApp://',
     'exp+igniteshoesapp://',
+    'igniteshoesapp://',
   ],
   config: {
     screens: {
